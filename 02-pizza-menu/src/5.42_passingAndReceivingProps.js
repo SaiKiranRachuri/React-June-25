@@ -1,0 +1,146 @@
+//// Props: Props is passing data between components in particular from parent to child components.
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+
+const pizzaData = [
+  {
+    name: "Focaccia",
+    ingredients: "Bread with italian olive oil and rosemary",
+    price: 6,
+    photoName: "pizzas/focaccia.jpg",
+    soldOut: false,
+  },
+  {
+    name: "Pizza Margherita",
+    ingredients: "Tomato and mozarella",
+    price: 10,
+    photoName: "pizzas/margherita.jpg",
+    soldOut: false,
+  },
+  {
+    name: "Pizza Spinaci",
+    ingredients: "Tomato, mozarella, spinach, and ricotta cheese",
+    price: 12,
+    photoName: "pizzas/spinaci.jpg",
+    soldOut: false,
+  },
+  {
+    name: "Pizza Funghi",
+    ingredients: "Tomato, mozarella, mushrooms, and onion",
+    price: 12,
+    photoName: "pizzas/funghi.jpg",
+    soldOut: false,
+  },
+  {
+    name: "Pizza Salamino",
+    ingredients: "Tomato, mozarella, and pepperoni",
+    price: 15,
+    photoName: "pizzas/salamino.jpg",
+    soldOut: true,
+  },
+  {
+    name: "Pizza Prosciutto",
+    ingredients: "Tomato, mozarella, ham, aragula, and burrata cheese",
+    price: 18,
+    photoName: "pizzas/prosciutto.jpg",
+    soldOut: false,
+  },
+];
+
+function App() {
+  const time = new Date().toLocaleTimeString();
+  return (
+    <div className="container">
+      {/* <h1>Hello React! It's {time}.</h1> */}
+      <Header />
+      <Menu />
+      <Footer />
+    </div>
+  );
+}
+
+function Menu() {
+  return (
+    <main className="menu">
+      <Pizza
+        pizzaName="Pizza spinaci"
+        photoName="Pizzas/spinaci.jpg"
+        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
+        // price="630"
+        price={400}
+      />
+
+      <Pizza
+        pizzaName="Pizza Funghi"
+        photoName="pizzas/funghi.jpg"
+        ingredients="Tomato, mozarella, mushrooms, and onion"
+        // price="630"
+        price={630}
+      />
+    </main>
+  );
+}
+
+function Pizza(props) {
+  const hour = new Date().getHours();
+  // console.log(hour);
+  const openHour = 12;
+  const closeHour = 21;
+  const isOpen = hour >= openHour && hour <= closeHour;
+
+  //   if (isOpen) {
+  //     alert("We are open.");
+  //   } else {
+  //     alert("We are currently closed.");
+  //   }
+  // The alert executes twice due to strict mode. In strict mode our components are usually rendered twice.
+
+  return (
+    <div className="pizza">
+      <img src={props.photoName} alt={props.pizzaName}></img>
+      <div>
+        <h3>{props.pizzaName}</h3>
+        <p>{props.ingredients}</p>
+        <span>{props.price + 110}</span>
+      </div>
+    </div>
+  );
+}
+
+function Header() {
+  const style = {
+    color: "orange",
+    fontSize: "48px",
+    textTransform: "uppercase",
+  };
+  return (
+    // <h1
+    //   style={{ color: "orange", fontSize: "48px", textTransform: "uppercase" }}
+    // >
+    //   Fast Pizza Co.
+    // </h1>
+    <header className="header">
+      <h1 style={style}>Fast Pizza Co.</h1>
+    </header>
+  );
+}
+
+function Footer() {
+  // return React.createElement("Footer", null, "We are currently open.");
+  return (
+    <footer className="footer">
+      {new Date().toLocaleTimeString()}. We are currently Open.
+    </footer>
+  );
+}
+
+// React version 18
+const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(<App />);
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
