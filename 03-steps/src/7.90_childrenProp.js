@@ -1,4 +1,4 @@
-//// Children prop: The content that is enclosed in b/w opening and closing tags of a component are treated as the content in child component.
+//// Children prop: The content that is enclosed in b/w opening and closing tags of a component are treated as the content in child component. i.e., allows to pass JSX into an element. line 65.
 //// Regular prop: The properties that are defined inside the opening tag of a component.
 
 import { useState } from "react";

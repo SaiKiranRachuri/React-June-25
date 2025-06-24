@@ -1,5 +1,3 @@
-//// line 30, 48, 51.
-
 import { useState } from "react";
 import "./index.css";
 
@@ -27,28 +25,20 @@ export default function App() {
 }
 
 function Accordion() {
-  const [curOpen, setCurOpen] = useState(null);
   return (
     <div className="accordion">
       {faqs.map((faq, i) => (
-        <AccordionItem
-          title={faq.title}
-          text={faq.text}
-          num={i + 1}
-          curOpen={curOpen}
-          onOpen={setCurOpen}
-          key={faq.title}
-        />
+        <AccordionItem title={faq.title} text={faq.text} num={i + 1} />
       ))}
     </div>
   );
 }
 
-function AccordionItem({ title, text, num, curOpen, onOpen }) {
-  const isOpen = num === curOpen;
+function AccordionItem({ title, text, num }) {
+  const [isOpen, setIsOpen] = useState(false);
 
   function handleToggle() {
-    onOpen(isOpen ? null : num);
+    setIsOpen((isOpen) => !isOpen);
   }
   return (
     <div className={isOpen ? "item open" : "item"} onClick={handleToggle}>
