@@ -1,110 +1,88 @@
-import { useState } from "react";
+//// For input element use empty string as default
+//// For select element use 0 as default
+
+import { use, useState } from "react";
 
 export default function App() {
-  const [feedbackPercentage, setFeedbackPercentage] = useState("satisfied");
-  const [bill, setBill] = useState(null);
-  const [totalBill, setTotalBill] = useState(0);
-  let percentage;
-  // console.log("Percentage:", percentage);
+  return (
+    <div>
+      <TipCalculator />
+    </div>
+  );
+}
 
-  function calcPercentage(value) {
-    return setFeedbackPercentage(value === "satisfied" ? 30 : 10);
+function TipCalculator() {
+  const [bill, setBill] = useState("");
+  const [percentage1, setPercentage1] = useState(10);
+  const [percentage2, setPercentage2] = useState(0);
+
+  function handleReset() {
+    setBill("");
+    setPercentage1(0);
+    setPercentage2(0);
   }
 
+  const tip = (bill * (percentage1 + percentage2)) / 2 / 100;
   return (
     <div>
-      <Bill
-        totalBill={totalBill}
-        setTotalBill={setTotalBill}
-        percentage={percentage}
-      />
-      <Feedback
-        feedbackPercentage={feedbackPercentage}
-        setFeedbackPercentage={setFeedbackPercentage}
-        totalBill={totalBill}
-        setTotalBill={setTotalBill}
-        percentage={percentage}
-        calcPercentage={calcPercentage}
-      />
-      <TotalMessage
-        feedbackPercentage={feedbackPercentage}
-        setFeedbackPercentage={setFeedbackPercentage}
-        bill={bill}
-        setBill={setBill}
-        totalBill={totalBill}
-        setTotalBill={setTotalBill}
-      />
-      <ResetButton />
+      <BillInput bill={bill} onSetBill={setBill} />
+      <Feedback percentage={percentage1} onSelect={setPercentage1}>
+        How did you like the service?:{" "}
+      </Feedback>
+      <Feedback percentage={percentage2} onSelect={setPercentage2}>
+        How did your friend like the service?:{" "}
+      </Feedback>
+
+      {bill > 0 && (
+        <>
+          <Output bill={bill} tip={tip} />
+          <Reset handleReset={handleReset} />
+        </>
+      )}
     </div>
   );
 }
 
-function Bill({ setTotalBill, percentage }) {
-  const [bill, setBill] = useState("");
+function BillInput({ bill, onSetBill }) {
   return (
     <div>
-      <p>How much was the bill?</p>
       <input
-        type="number"
+        type="text"
+        placeholder="Bill Input.."
         value={bill}
-        onChange={(e) => {
-          setBill(+e.target.value);
-          setTotalBill(() => bill + (bill * percentage) / 100);
-        }}
-      ></input>
-      {console.log(bill)}
+        onChange={(e) => onSetBill(Number(e.target.value))}
+      />
     </div>
   );
 }
 
-function Feedback({
-  feedbackPercentage,
-  setFeedbackPercentage,
-  setTotalBill,
-  bill,
-  percentage,
-  calcPercentage,
-}) {
+function Feedback({ children, percentage, onSelect }) {
   return (
     <div>
-      <p>How did you like the service?</p>
-      <select
-        value={feedbackPercentage}
-        onChange={(e) => {
-          calcPercentage(e.target.value);
-          // setFeedbackPercentage(+e.target.value);
-          // console.log("e.target.value:", e.target.value);
-          setTotalBill(() => bill + (bill * percentage) / 100);
-        }}
-      >
-        <option value="satisfied">Satisfied(30%)</option>
-        <option value="dissatisfied">Dissatisfied(10%)</option>
-        {/* {console.log(feedbackPercentage)} */}
+      <label>{children}</label>
+      <select value={percentage} onChange={(e) => onSelect(+e.target.value)}>
+        <option value="0">Dissatisfied(0%)</option>
+        <option value="10">It is Okay(10%)</option>
+        <option value="30">Satisfied(30%)</option>
       </select>
     </div>
   );
 }
 
-function TotalMessage({
-  feedbackPercentage,
-  setFeedbackPercentage,
-  bill,
-  setBill,
-  totalBill,
-}) {
-  console.log("Total bill:", totalBill);
-
+function Output({ bill, tip }) {
   return (
     <div>
-      <p>You pay ${totalBill}.</p>
+      <h3>
+        You pay ${bill + tip} (${bill} + ${tip})
+      </h3>
     </div>
   );
 }
 
-function ResetButton() {
+function Reset({ handleReset }) {
   return (
     <div>
-      <button>Reset</button>
+      <button onClick={handleReset}>Reset</button>
     </div>
   );
 }
