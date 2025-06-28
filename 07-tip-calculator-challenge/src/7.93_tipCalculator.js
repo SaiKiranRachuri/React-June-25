@@ -1,61 +1,88 @@
+//// For input element use empty string as default
+//// For select element use 0 as default
+
 import { useState } from "react";
 
 export default function App() {
   return (
     <div>
-      <Bill />
-      <Feedback />
-      <Message />
-      <ResetButton />
+      <TipCalculator />
     </div>
   );
 }
 
-function Bill() {
-  const [bill, setBill] = useState();
+function TipCalculator() {
+  const [bill, setBill] = useState("");
+  const [percentage1, setPercentage1] = useState(10);
+  const [percentage2, setPercentage2] = useState(0);
+
+  function handleReset() {
+    setBill("");
+    setPercentage1(0);
+    setPercentage2(0);
+  }
+
+  const tip = (bill * (percentage1 + percentage2)) / 2 / 100;
+  return (
+    <div>
+      <BillInput bill={bill} onSetBill={setBill} />
+      <Feedback percentage={percentage1} onSelect={setPercentage1}>
+        How did you like the service?:{" "}
+      </Feedback>
+      <Feedback percentage={percentage2} onSelect={setPercentage2}>
+        How did your friend like the service?:{" "}
+      </Feedback>
+
+      {bill > 0 && (
+        <>
+          <Output bill={bill} tip={tip} />
+          <Reset handleReset={handleReset} />
+        </>
+      )}
+    </div>
+  );
+}
+
+function BillInput({ bill, onSetBill }) {
   return (
     <div>
       <input
-        type="number"
-        placeholder="Input bill...."
+        type="text"
+        placeholder="Bill Input.."
         value={bill}
-        onChange={(e) => setBill(+e.target.value)}
-      ></input>
+        onChange={(e) => onSetBill(Number(e.target.value))}
+      />
     </div>
   );
 }
 
-function Feedback() {
-  const [percentage, setPercentage] = useState("30");
+function Feedback({ children, percentage, onSelect }) {
   return (
     <div>
-      <label>How likely the service is: </label>
-      <select
-        value={percentage}
-        onChange={(e) => {
-          setPercentage(+e.target.value);
-          console.log(percentage);
-        }}
-      >
+      <label>{children}</label>
+      <select value={percentage} onChange={(e) => onSelect(+e.target.value)}>
+        <option value="0">Dissatisfied(0%)</option>
+        <option value="10">It is Okay(10%)</option>
         <option value="30">Satisfied(30%)</option>
-        <option value="10">Disatisfied(10%)</option>
       </select>
     </div>
   );
 }
 
-function Message() {
+function Output({ bill, tip }) {
   return (
     <div>
-      <p></p>
+      <h3>
+        You pay ${bill + tip} (${bill} + ${tip})
+      </h3>
     </div>
   );
 }
 
-function ResetButton() {
+function Reset({ handleReset }) {
   return (
     <div>
-      <button>Reset</button>
+      <button onClick={handleReset}>Reset</button>
     </div>
   );
 }
