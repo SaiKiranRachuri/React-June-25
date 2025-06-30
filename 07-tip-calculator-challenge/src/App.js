@@ -1,7 +1,7 @@
 //// For input element use empty string as default
 //// For select element use 0 as default
 
-import { use, useState } from "react";
+import { useState } from "react";
 
 export default function App() {
   return (
