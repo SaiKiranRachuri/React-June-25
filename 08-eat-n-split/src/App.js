@@ -1,10 +1,12 @@
-// Splitting the bill: line 196, 185 to 193
+// Splitting the bill: line 201, 190 to 198
 // 1) Prevent default
 // 2) Guard clause if there is no bill or expense
 // 3) Receives the balance to updated on selected friend from variable "value"
 
-// Handling split bill: line 52 to 62
+// Handling split bill: line 55 to 64
 // 1) Take all friends data and update balance of current friend
+
+// Clear input fields: line 66 to 68
 import { useState } from "react";
 
 const initialFriends = [
@@ -60,6 +62,9 @@ export default function App() {
           : friend
       )
     );
+
+    setSelectedFriend(null);
+    // Closes the form after submit enabling clearing the values when toggling b/w select friends.
   }
 
   return (
