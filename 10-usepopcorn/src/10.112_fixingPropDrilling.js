@@ -69,7 +69,10 @@ export default function App() {
         <SearchBox />
         <SearchResult movies={movies} />
       </NavBar>
-      <Main movies={movies} />
+      <Main>
+        <MoviesList movies={movies} />
+        <MoviesWatched />
+      </Main>
     </>
   );
 }
@@ -115,13 +118,8 @@ function SearchResult({ movies }) {
   );
 }
 
-function Main({ movies }) {
-  return (
-    <main className="main">
-      <MoviesList movies={movies} />
-      <MoviesWatched />
-    </main>
-  );
+function Main({ children }) {
+  return <main className="main">{children}</main>;
 }
 
 function MoviesList({ movies }) {
