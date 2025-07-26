@@ -1,100 +1,29 @@
-import { useState } from "react";
+//// RECAP ON HOW REACT WORKS BEHIND THE SCENES
 
-const content = [
-  {
-    summary: "React is a library for building UIs",
-    details:
-      "Dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  },
-  {
-    summary: "State management is like giving state a home",
-    details:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  },
-  {
-    summary: "We can think of props as the component API",
-    details:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-  },
-];
+//// TRIGGER
+// The whole process of rendering and displaying React application starts with a trigger.
+// The trigger can be the INITIAL render of the app or a STATE update in one of the component instances
 
-export default function App() {
-  return (
-    <div>
-      <Tabbed content={content} />
-    </div>
-  );
-}
+//// RENDER PHASE
+// The above then triggers a render phase which does not produce any visual output
+// This phase starts with all the component instances that needs rerender
+// Rendering here means calling the function components. This creates one or more updated react elements which are placed in a VIRTUAL DOM.(list of react elements)
+// Rendering a component will also cause all of its child components despite there is no change in props because REACT doesn't know if its child had been affected on parent rerendering.
 
-function Tabbed({ content }) {
-  const [activeTab, setActiveTab] = useState(0);
+//// RENDER PHASE
+//// RECONCILIATION + DIFFLING
+// New Virtual DOM needs to be reconciled with current Fiber tree. Which is the representation of element tree before the state update. Because it is slow to destroy entire tree and rebuild when there is a change.
+// Reconciliation tries to reuse as much DOM as possible
+// This Reconciliation is done using a Reconciler called Fiber which works with a mutable Data Structure called Fiber Tree.
+// In the tree for each react element and DOM element there is a fiber that holds actual state, props, queue of work. After reconciliation this queue of work contains the DOM updates for that element.
+// The computation is done by comparing the Virtual DOM with current Fiber tree using a Diffing algorithm.
+// Updated FIBER TREE and List of DOM updates
+// Render phase is asynchronous, it can split work into chunks: pause, prioritize, resume for concurrent features also to prevent JS engine from blockage from constant rerenders.
 
-  return (
-    <div>
-      <div className="tabs">
-        <Tab num={0} activeTab={activeTab} onClick={setActiveTab} />
-        <Tab num={1} activeTab={activeTab} onClick={setActiveTab} />
-        <Tab num={2} activeTab={activeTab} onClick={setActiveTab} />
-        <Tab num={3} activeTab={activeTab} onClick={setActiveTab} />
-      </div>
+//// COMMIT PHASE
+// In this phase the renderer REACT DOM insert, delete, update DOM elements.
+// And will have an updated DOM
+// This synchronous unlike Render Phase: done in one to go to keep UI consistent
 
-      {activeTab <= 2 ? (
-        <TabContent item={content.at(activeTab)} />
-      ) : (
-        <DifferentContent />
-      )}
-    </div>
-  );
-}
-
-function Tab({ num, activeTab, onClick }) {
-  return (
-    <button
-      className={activeTab === num ? "tab active" : "tab"}
-      onClick={() => onClick(num)}
-    >
-      Tab {num + 1}
-    </button>
-  );
-}
-
-function TabContent({ item }) {
-  const [showDetails, setShowDetails] = useState(true);
-  const [likes, setLikes] = useState(0);
-
-  function handleInc() {
-    setLikes(likes + 1);
-  }
-
-  return (
-    <div className="tab-content">
-      <h4>{item.summary}</h4>
-      {showDetails && <p>{item.details}</p>}
-
-      <div className="tab-actions">
-        <button onClick={() => setShowDetails((h) => !h)}>
-          {showDetails ? "Hide" : "Show"} details
-        </button>
-
-        <div className="hearts-counter">
-          <span>{likes} ❤️</span>
-          <button onClick={handleInc}>+</button>
-          <button>+++</button>
-        </div>
-      </div>
-
-      <div className="tab-undo">
-        <button>Undo</button>
-        <button>Undo in 2s</button>
-      </div>
-    </div>
-  );
-}
-
-function DifferentContent() {
-  return (
-    <div className="tab-content">
-      <h4>I'm a DIFFERENT tab, so I reset state 💣💥</h4>
-    </div>
-  );
-}
+//// BROWSER PAINT
+// Once the browser starts to realises there is an DOM update it starts repaint the browser UI on screen.
