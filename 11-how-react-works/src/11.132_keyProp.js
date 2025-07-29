@@ -4,8 +4,8 @@
 // However, the tab4 is different component in same position which is rerendered altogether and the state is reset.
 // After we switch from tab4 to tab3/tab2/tab1 the state at the tabs are lost as the component types are changed.
 
-// Solution: The state must be preserved and should be independent across tabs
-// We use a Key prop that doesn't rerender optimizing the performance on huge volumes of DOM changes. On using Key prop likes, data is preserved.
+// Solution: The state must be reset for tab1/tab2/tab3
+// We use a Key prop that doesn't rerender optimizing the performance on huge volumes of DOM changes. On using Key prop likes, data is NOT preserved.
 
 import { useState } from "react";
 
