@@ -2,7 +2,7 @@
 // Ideally as the event handler has 2 statements the component should be rendered twice however, as the state updates are batched the component is rendered once as can be seen by the log statement: line 81 to 84.
 
 //// 2) Prove state updates are Asynchronous by logging the likes
-// Once after we update the likes on page and we click on undo button as per the previous statement in event handler the likes should be zero. However, it displays the current state of fiber tree. line 85.
+// Once after we update the likes on page and we click on undo button as per the previous statement in event handler the likes should be zero. The state is in STALE STATE However, it displays the current state of fiber tree. line 85.
 
 //// 3) When state values are already to default, button click will NOT rerender the component. i.e., current state === new state. Notice it doesn't log the "Render Check" statement.
 
