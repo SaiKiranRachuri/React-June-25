@@ -1,5 +1,6 @@
 //// useEffect is used to register a side effect that is developed by updating a state at RENDER LOGIC.
 // useEffect prevents infinite rerendering in case of state updates by rendering it on mount phase. [] empty array indicates mount phase/initial render. line 59 to 64.
+// The Dependency array depicts whether to render it at mount phase, rerender or unmount.
 
 import { useEffect, useState } from "react";
 
