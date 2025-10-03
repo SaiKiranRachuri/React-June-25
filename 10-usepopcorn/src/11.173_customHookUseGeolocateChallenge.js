@@ -14,7 +14,7 @@ function useGeolocation() {
       (pos) => {
         setPosition({
           lat: pos.coords.latitude,
-          lng: pos.coords.longitude,
+          lng: pos.coords.longitude
         });
         setIsLoading(false);
       },
@@ -33,7 +33,7 @@ export default function App() {
     isLoading,
     position: { lat, lng },
     error,
-    getPosition,
+    getPosition
   } = useGeolocation();
 
   const [countClicks, setCountClicks] = useState(0);
