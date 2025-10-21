@@ -1,4 +1,4 @@
-// Removing boiler plate code using Class Fields: line 37, 56
+// Create components for Weather and its sub component Day
 import React from "react";
 
 function getWeatherIcon(wmoCode) {
@@ -34,26 +34,19 @@ function formatDay(dateStr) {
 }
 
 class App extends React.Component {
-  state = {
-    location: "LISBON",
-    isLoading: false,
-    displayLocation: "",
-    weather: {},
-  };
-  // constructor(props) {
-  //   super(props);
+  constructor(props) {
+    super(props);
 
-  // this.state = {
-  //   location: "LISBON",
-  //   isLoading: false,
-  //   displayLocation: "",
-  //   weather: {},
-  // };
-  // this.fetchWeather = this.fetchWeather.bind(this);
-  // }
+    this.state = {
+      location: "LISBON",
+      isLoading: false,
+      displayLocation: "",
+      weather: {},
+    };
+    this.fetchWeather = this.fetchWeather.bind(this);
+  }
 
-  // async fetchWeather() {
-  fetchWeather = async () => {
+  async fetchWeather() {
     try {
       this.setState({ isLoading: true });
       // 1) Getting location (geocoding)
@@ -82,7 +75,7 @@ class App extends React.Component {
     } finally {
       this.setState({ isLoading: false });
     }
-  };
+  }
 
   render() {
     return (
