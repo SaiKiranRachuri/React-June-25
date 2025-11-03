@@ -1,6 +1,7 @@
-// Display question by status active
-// Create start case in switch statement
-// dispatch as param in StartScreen - let's start event
+// Load data based on the status
+// 1) Display components based on status: Loader, Error, StartScreen
+// 2) Create component StartScreen
+// 3) Pass derived state "numQuestions" to StartScreen comp as prop
 
 import { useEffect, useReducer } from "react";
 import Header from "./Header";
@@ -8,7 +9,6 @@ import Main from "./Main";
 import Loader from "./Loader";
 import Error from "./Error";
 import StartScreen from "./StartScreen";
-import Questions from "./Questions";
 
 const initialState = {
   questions: [],
@@ -23,8 +23,6 @@ function reducer(state, action) {
       return { ...state, questions: action.payload, status: "ready" };
     case "dataFailed":
       return { ...state, status: "error" };
-    case "start":
-      return { ...state, status: "active" };
     default:
       throw new Error("Action unknown");
   }
@@ -55,10 +53,7 @@ export default function App() {
       <Main>
         {status === "loading" && <Loader />}
         {status === "error" && <Error />}
-        {status === "ready" && (
-          <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
-        )}
-        {status === "active" && <Questions />}
+        {status === "ready" && <StartScreen numQuestions={numQuestions} />}
       </Main>
     </div>
   );
