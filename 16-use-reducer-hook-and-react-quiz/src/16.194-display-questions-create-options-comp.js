@@ -1,5 +1,4 @@
-// Display next button when answer is clicked: case nextQuestion
-// New component <NextButton> in main
+// Display question and create a component for displaying options
 
 import { useEffect, useReducer } from "react";
 import Header from "./Components/Header";
@@ -8,7 +7,6 @@ import Loader from "./Components/Loader";
 import Error from "./Components/Error";
 import StartScreen from "./Components/StartScreen";
 import Questions from "./Components/Questions";
-import NextButton from "./Components/NextButton";
 
 const initialState = {
   questions: [],
@@ -16,8 +14,6 @@ const initialState = {
   status: "loading",
   // loading, error, ready, active, finished
   index: 0,
-  answer: null,
-  points: 0,
 };
 
 function reducer(state, action) {
@@ -27,22 +23,7 @@ function reducer(state, action) {
     case "dataFailed":
       return { ...state, status: "error" };
     case "start":
-      // question = state.questions.at(state.index);
       return { ...state, status: "active" };
-    case "nextQuestion":
-      return { ...state, index: state.index + 1, answer: null };
-    case "newAnswer":
-      const question = state.questions.at(state.index);
-      console.log("Question test:", question);
-      return {
-        ...state,
-        answer: action.payload,
-        points:
-          action.payload === question.correctOption
-            ? state.points + question.points
-            : state.points,
-      };
-
     default:
       throw new Error("Action unknown");
   }
@@ -50,7 +31,7 @@ function reducer(state, action) {
 
 export default function App() {
   // const [state, dispatch] = useReducer(reducer, initialState);
-  const [{ questions, status, index, answer }, dispatch] = useReducer(
+  const [{ questions, status, index }, dispatch] = useReducer(
     reducer,
     initialState
   );
@@ -79,16 +60,7 @@ export default function App() {
         {status === "ready" && (
           <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
         )}
-        {status === "active" && (
-          <>
-            <Questions
-              question={questions[index]}
-              dispatch={dispatch}
-              answer={answer}
-            />
-            <NextButton dispatch={dispatch} answer={answer} />
-          </>
-        )}
+        {status === "active" && <Questions question={questions[index]} />}
       </Main>
     </div>
   );

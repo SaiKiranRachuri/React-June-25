@@ -1,5 +1,6 @@
-// Display next button when answer is clicked: case nextQuestion
-// New component <NextButton> in main
+// 1) New Answer - Screen should rerender on selection
+// 2) Points should be updated
+// 3) Next button should be enabled
 
 import { useEffect, useReducer } from "react";
 import Header from "./Components/Header";
@@ -8,7 +9,6 @@ import Loader from "./Components/Loader";
 import Error from "./Components/Error";
 import StartScreen from "./Components/StartScreen";
 import Questions from "./Components/Questions";
-import NextButton from "./Components/NextButton";
 
 const initialState = {
   questions: [],
@@ -27,13 +27,9 @@ function reducer(state, action) {
     case "dataFailed":
       return { ...state, status: "error" };
     case "start":
-      // question = state.questions.at(state.index);
       return { ...state, status: "active" };
-    case "nextQuestion":
-      return { ...state, index: state.index + 1, answer: null };
     case "newAnswer":
       const question = state.questions.at(state.index);
-      console.log("Question test:", question);
       return {
         ...state,
         answer: action.payload,
@@ -42,7 +38,6 @@ function reducer(state, action) {
             ? state.points + question.points
             : state.points,
       };
-
     default:
       throw new Error("Action unknown");
   }
@@ -80,14 +75,11 @@ export default function App() {
           <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
         )}
         {status === "active" && (
-          <>
-            <Questions
-              question={questions[index]}
-              dispatch={dispatch}
-              answer={answer}
-            />
-            <NextButton dispatch={dispatch} answer={answer} />
-          </>
+          <Questions
+            question={questions[index]}
+            dispatch={dispatch}
+            answer={answer}
+          />
         )}
       </Main>
     </div>
