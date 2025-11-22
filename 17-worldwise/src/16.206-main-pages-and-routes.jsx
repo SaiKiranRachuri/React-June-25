@@ -1,5 +1,5 @@
-// 1) Link and NavLink
-// 2) On using NavLink the page that is rendered will have an active class
+// 1) npm i react-router-dom@6
+// 2) Create Routes for pages using React Router
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Product from "./pages/Product";
