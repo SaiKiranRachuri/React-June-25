@@ -12,6 +12,7 @@ import PageNotFound from "./pages/PageNotFound";
 import Pricing from "./pages/Pricing";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
+import AppLayout from "./pages/AppLayout";
 
 function App() {
   // const x = 23;
@@ -23,6 +24,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="pricing" element={<Pricing />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/app" element={<AppLayout />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
