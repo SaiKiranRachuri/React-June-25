@@ -11,17 +11,18 @@ import Product from "./pages/Product";
 import PageNotFound from "./pages/PageNotFound";
 import Pricing from "./pages/Pricing";
 import HomePage from "./pages/HomePage";
+import Login from "./pages/Login";
 
 function App() {
   // const x = 23;
   return (
     <div>
-      Hello Router!
       <BrowserRouter>
         <Routes>
           <Route path="product" element={<Product />} />
           <Route path="/" element={<HomePage />} />
           <Route path="pricing" element={<Pricing />} />
+          <Route path="/login" element={<Login />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
