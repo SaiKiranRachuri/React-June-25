@@ -6,6 +6,12 @@
 // Include a CSS module for PageNav and define styles
 // Including classes with same names in different components using CSS modules styles then it distinguishes the classes by a unique ID.
 
+// 17.216 Dynamic routes with url params
+//  Passing data from one page to another using UI state using url params
+//  1) Create new route and give the param name. Param name can be anything
+//  2) Create link for the JSX element i.e., for the each city item: Cityitem component
+//  2) Using useParams() hook data from URL can be fetched: City component
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Product from "./pages/Product";
 import PageNotFound from "./pages/PageNotFound";
@@ -16,6 +22,8 @@ import AppLayout from "./pages/AppLayout";
 import { useEffect, useState } from "react";
 import CityList from "./components/CityList";
 import CountriesList from "./components/CountriesList";
+
+import City from "./components/City";
 
 const BASE_URL = "http://localhost:9000";
 
@@ -48,6 +56,7 @@ function App() {
         <Routes>
           <Route path="product" element={<Product />} />
           <Route path="/" element={<HomePage />} />
+
           <Route path="pricing" element={<Pricing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/app" element={<AppLayout />}>
@@ -63,6 +72,7 @@ function App() {
               path="countries"
               element={<CountriesList cities={cities} isLoading={isLoading} />}
             />
+            <Route path="cities/:id" element={<City />} />
           </Route>
           <Route path="*" element={<PageNotFound />} />
         </Routes>
