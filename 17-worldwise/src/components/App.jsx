@@ -24,17 +24,11 @@
 // 17.218 Programmatic way of navigation: An imperative way
 // Ex: On submitting a form
 // Worldwise usecase
-// 1) Define route for the form: App.jsx
-// 2) Add an event listener on which page should be navigated to form: Map component
+// 1) Define route for the form
+// 2) Add an event listener on which page should be navigated to form
 // 3) Use useNavigate() function in the event listener
-// Create a reuseable button component for the Form component
-// Use programmatic way of navigation on clicking back button
 
-//17.219 Programmatic navigation using <Navigate />
-// Display cities by default on cities page i.e., on the index element
-// replace keyword is used on <Navigate /> is store the history stack and move back when browser back button is clicked
-
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Product from "./pages/Product";
 import PageNotFound from "./pages/PageNotFound";
 import Pricing from "./pages/Pricing";
@@ -44,7 +38,6 @@ import AppLayout from "./pages/AppLayout";
 import { useEffect, useState } from "react";
 import CityList from "./components/CityList";
 import CountriesList from "./components/CountriesList";
-import Form from "./components/Form";
 
 import City from "./components/City";
 
@@ -83,11 +76,10 @@ function App() {
           <Route path="pricing" element={<Pricing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/app" element={<AppLayout />}>
-            {/* <Route
+            <Route
               index
               element={<CityList cities={cities} isLoading={isLoading} />}
-            /> */}
-            <Route index element={<Navigate replace to="cities" />} />
+            />
             <Route
               path="cities"
               element={<CityList cities={cities} isLoading={isLoading} />}
