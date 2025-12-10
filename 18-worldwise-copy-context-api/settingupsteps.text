@@ -1,0 +1,17 @@
+1) npm create vite@4
+      installs all the necessary frameworks
+
+2) Confirue App.jsx
+
+3) Install node modules
+      npm install
+
+4) Start application
+      npm run dev
+
+5) Configure eslint developer tool
+      npm install eslint vite-plugin-eslint eslint-config-react-app --save-dev
+
+6) Create file eslintrc.json and extend react-app rules
+
+7) Configure vite.config.js file with eslint

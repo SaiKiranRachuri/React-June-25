@@ -3,7 +3,7 @@
 // Steps:
 //  1) createContext() and store that in a variable with capital camel case convention
 //  2) Provide value to child components: value = {}
-//  3) Consume the context in destination component using useContext()
+//  3) Consume the context  using useContext()
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
