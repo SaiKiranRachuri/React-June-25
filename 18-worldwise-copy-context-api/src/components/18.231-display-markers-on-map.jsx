@@ -1,22 +1,16 @@
-// 18.232 Interacting with Map: Zoom in to the selected city
-// 1) On selecting the city the map should navigate to the respective marker
-// 2) On clicking on back button in form marker should still stay the same untill another city is selected. To make it work I override the default map position with the current lat, lng positions. See useEffect() code below.
-// 3) Detecting a click on map and display form along the location coords
+// 18.231 Displaying city markers on map
+// 1) Use the custom hook useCities from CitiesContext
+// 2) Use map function to loop over cities array and display markers
+// 3) Correct the display pop up according to the city each
 
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import styles from "./Map.module.css";
-import { useEffect, useState } from "react";
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  useMap,
-  useMapEvents,
-} from "react-leaflet";
+import { useState } from "react";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useCities } from "../../contexts/CitiesContext";
 
 function Map() {
+  const navigate = useNavigate();
   const paramsData = useParams();
   console.log(paramsData);
   const { id } = useParams();
@@ -28,22 +22,13 @@ function Map() {
 
   const { cities } = useCities();
 
-  console.log("Latitude: ", lat);
-
-  useEffect(
-    function () {
-      if (lat && lng) setMapPostion([lat, lng]);
-    },
-    [lat, lng]
-  );
-
+  console.log(lat);
   return (
     <div className={styles.mapContainer}>
       <p>Map {lat}</p>
       <MapContainer
-        // center={mapPosition}
-        center={[lat || 40, lng || 0]}
-        zoom={6}
+        center={mapPosition}
+        zoom={13}
         scrollWheelZoom={true}
         className={styles.map}
       >
@@ -63,27 +48,9 @@ function Map() {
             </Popup>
           </Marker>
         ))}
-        <ChangeCenter
-          //  position={[lat || 40, lng || 0]
-          position={mapPosition}
-        ></ChangeCenter>
-        <DetectClick />
       </MapContainer>
     </div>
   );
-}
-
-function ChangeCenter({ position }) {
-  const map = useMap();
-  map.setView(position);
-  return null;
-}
-
-function DetectClick() {
-  const navigate = useNavigate();
-  useMapEvents({
-    click: (e) => navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`),
-  });
 }
 
 export default Map;
