@@ -1,5 +1,8 @@
-// 18.234 Fetching data into the form from map and url
-// 1) Create a custom hook for urlPosition: and get lat and lng data from url
+// 18.233 Set map position using custom hook GeoLocation
+// 1) Create a folder for custom hooks and create a js file for GeoLocation
+// 2) Destructure GeoLocation custom hook
+// 3) Import button to fetch current position and coords
+// 4) Synchronize the default coords with current position using an Effect
 
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import styles from "./Map.module.css";
@@ -15,7 +18,6 @@ import {
 import { useCities } from "../../contexts/CitiesContext";
 import { useGeolocation } from "../../hooks/useGeolocation";
 import Button from "./Button";
-import { useUrlPosition } from "../../hooks/useUrlPostion";
 
 function Map() {
   const paramsData = useParams();
@@ -23,7 +25,9 @@ function Map() {
   const { id } = useParams();
   const [mapPosition, setMapPostion] = useState([40, 0]);
 
-  const [lat, lng] = useUrlPosition();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const lat = searchParams.get("lat");
+  const lng = searchParams.get("lng");
 
   const {
     isLoading: isLoadingGeolocation,
