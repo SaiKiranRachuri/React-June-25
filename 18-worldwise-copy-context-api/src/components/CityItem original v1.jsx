@@ -1,7 +1,3 @@
-// 18.236 Deleting a city
-// 1) On clicking delete button on any city it also opens up the form details because it involves clicling on the item: that should be prevented.
-// 2) Handle Click: Create a function for delete city in CitiesContext
-
 import { useCities } from "../../contexts/CitiesContext";
 import styles from "./CityItem.module.css";
 import { Link } from "react-router-dom";
@@ -18,13 +14,7 @@ function CityItem({ city }) {
   console.log(city);
 
   const { cityName, emoji, date, id, position } = city;
-  const { currentCity, deleteCity } = useCities();
-
-  function handleClick(e) {
-    e.preventDefault();
-    deleteCity(id);
-  }
-
+  const { currentCity } = useCities();
   return (
     <Link
       className={`${styles.cityItem} ${
@@ -35,9 +25,7 @@ function CityItem({ city }) {
       <span className={styles.emoji}>{emoji}</span>
       <h3 className={styles.name}>{cityName}</h3>
       <times className={styles.date}>{formatDate(date)}</times>
-      <button className={styles.deleteBtn} onClick={handleClick}>
-        &times;
-      </button>
+      <button className={styles.deleteBtn}>&times;</button>
     </Link>
   );
 }
