@@ -35,6 +35,126 @@
         "lng": 13.376933665713324
       },
       "id": 98443197
+    },
+    {
+      "cityName": "Magione",
+      "country": "Italy",
+      "emoji": "🇮🇹",
+      "date": "2026-01-04T04:58:43.678Z",
+      "notes": "",
+      "position": {
+        "lat": "43.101747258393814",
+        "lng": "12.178978223791654"
+      },
+      "id": 98443198
+    },
+    {
+      "cityName": "Fabiansebestyen",
+      "country": "Hungary",
+      "emoji": "🇭🇺",
+      "date": "2026-01-04T05:00:35.854Z",
+      "notes": "",
+      "position": {
+        "lat": "46.694991644275355",
+        "lng": "20.41255638370426"
+      },
+      "id": 98443199
+    },
+    {
+      "cityName": "Commune de Maadid",
+      "country": "Algeria",
+      "emoji": "🇩🇿",
+      "date": "2026-01-04T05:01:12.515Z",
+      "notes": "",
+      "position": {
+        "lat": "35.80263704500465",
+        "lng": "4.6362068927427345"
+      },
+      "id": 98443200
+    },
+    {
+      "cityName": "Brezina",
+      "country": "Algeria",
+      "emoji": "🇩🇿",
+      "date": "2026-01-04T05:02:02.044Z",
+      "notes": "",
+      "position": {
+        "lat": "33.011267499120606",
+        "lng": "2.132765902230776"
+      },
+      "id": 98443201
+    },
+    {
+      "cityName": "Maatarka",
+      "country": "Morocco",
+      "emoji": "🇲🇦",
+      "date": "2026-01-04T05:09:29.355Z",
+      "notes": "",
+      "position": {
+        "lat": "32.9830511392992",
+        "lng": "-2.7245702087343893"
+      },
+      "id": 98443202
+    },
+    {
+      "cityName": "Skaftarhreppur",
+      "country": "Iceland",
+      "emoji": "🇮🇸",
+      "date": "2026-01-04T05:09:42.691Z",
+      "notes": "c",
+      "position": {
+        "lat": "64.15307452310262",
+        "lng": "-18.085105821417603"
+      },
+      "id": 98443203
+    },
+    {
+      "cityName": "Skaftarhreppur",
+      "country": "Iceland",
+      "emoji": "🇮🇸",
+      "date": "2026-01-04T05:09:42.691Z",
+      "notes": "c",
+      "position": {
+        "lat": "64.15307452310262",
+        "lng": "-18.085105821417603"
+      },
+      "id": 98443204
+    },
+    {
+      "cityName": "Villardeciervos",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2026-01-04T05:16:05.459Z",
+      "notes": "",
+      "position": {
+        "lat": "41.93436362694367",
+        "lng": "-6.326196084721876"
+      },
+      "id": 98443205
+    },
+    {
+      "cityName": "Mauvezin",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2026-01-04T05:16:12.951Z",
+      "notes": "",
+      "position": {
+        "lat": "43.37838852601836",
+        "lng": "0.925922188421531"
+      },
+      "id": 98443206
+    },
+    {
+      "cityName": "Bachchannapet",
+      "country": "India",
+      "emoji": "🇮🇳",
+      "date": "2026-01-04T05:16:51.726Z",
+      "notes": "",
+      "position": {
+        "lat": "17.763151374795857",
+        "lng": "79.01367691222708"
+      },
+      "id": 98443207
     }
   ]
 }
