@@ -1,34 +1,15 @@
-//// 18.239 Implementing login
-// 1) Call the login function from useAuth()
-// 2) If isAuthenticated is true then programatically navigate to home page
-// 3) Once user is logged in and navigated to app, when browser back button is clicked it goes back and again forth to app. To prevent this use replace to clear the browser stack
-
 import Button from "../components/Button";
 import PageNav from "../components/PageNav";
 import styles from "./Login.module.css";
-import { useEffect, useState } from "react";
-import { useAuth } from "../../contexts/FakeAuthContext";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function Login() {
   // PRE-FILL FOR DEV PURPOSES
   const [email, setEmail] = useState("jack@example.com");
   const [password, setPassword] = useState("qwerty");
 
-  const { login, isAuthenticated } = useAuth();
-  const navigate = useNavigate();
-
-  useEffect(
-    function () {
-      if (isAuthenticated) navigate("/app", { replace: true });
-    },
-    [isAuthenticated, navigate]
-  );
-
   function handleSubmit(e) {
     e.preventDefault();
-
-    if (email && password) login(email, password);
   }
 
   return (

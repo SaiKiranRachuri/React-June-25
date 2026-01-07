@@ -13,18 +13,6 @@
       "id": 73930385
     },
     {
-      "cityName": "Madrid",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2027-07-15T08:22:53.976Z",
-      "notes": "",
-      "position": {
-        "lat": 40.46635901755316,
-        "lng": -3.7133789062500004
-      },
-      "id": 17806751
-    },
-    {
       "cityName": "Magione",
       "country": "Italy",
       "emoji": "🇮🇹",
@@ -37,40 +25,16 @@
       "id": 98443198
     },
     {
-      "cityName": "Maderuelo",
+      "cityName": "Zaragoza",
       "country": "Spain",
       "emoji": "🇪🇸",
-      "date": "2026-01-05T13:39:06.787Z",
+      "date": "2026-01-06T00:49:20.505Z",
       "notes": "",
       "position": {
-        "lat": "41.558879236886064",
-        "lng": "-3.537578484774633"
+        "lat": "41.673836976050666",
+        "lng": "-1.0107362309722292"
       },
       "id": 98443199
-    },
-    {
-      "cityName": "Abrantes",
-      "country": "Portugal",
-      "emoji": "🇵🇹",
-      "date": "2026-01-05T13:39:16.631Z",
-      "notes": "",
-      "position": {
-        "lat": "39.590701277064404",
-        "lng": "-8.173803207895261"
-      },
-      "id": 98443200
-    },
-    {
-      "cityName": "Santa Cruz de Grio",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2026-01-05T13:39:33.134Z",
-      "notes": "",
-      "position": {
-        "lat": "41.361332294577885",
-        "lng": "-1.4282145163830597"
-      },
-      "id": 98443201
     }
   ]
 }
