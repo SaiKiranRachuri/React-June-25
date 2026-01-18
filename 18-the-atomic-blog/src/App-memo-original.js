@@ -3,11 +3,7 @@
 // In React everything is recreated on every render including objects and functions thinking the props passed to child components are new props.
 // Solution: To prevent rerendering when objects are passed as prop we use useMemo() to render it on first instance and store it in cache.
 
-// useMemo is executed by a call back function and has a dependency array
-// Passing an empty dependency array will render the Archive component initially, However, see below object title which becomes unsync when a new post is added. So we use dependency array to rerender when there is a specific change.
-// And on dependency array we specify the premitives i.e., posts.length instead of just posts.
-
-import { memo, useEffect, useMemo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
 
 function createRandomPost() {
@@ -50,16 +46,10 @@ function App() {
     [isFakeDark],
   );
 
-  // const archiveOptions = useMemo(() => {
-  //   return { show: true, title: "Test performance using an object" };
-  // }, []);
-
-  const archiveOptions = useMemo(() => {
-    return {
-      show: true,
-      title: `Test performance using an object: no of post ${posts.length}`,
-    };
-  }, [posts.length]);
+  const archiveOptions = {
+    show: true,
+    title: "Test performance using an object",
+  };
 
   return (
     <section>
